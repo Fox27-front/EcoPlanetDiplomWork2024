@@ -23,10 +23,11 @@
                         <a href=""><button class="button-start1">Главная</button></a>
                         <a href="/products.php"><button class="button-start1">Товары</button></a>
                         <a href="login.php"><button class="button-start1">Личный Кабинет</button></a>
-                        <a href=""><button class="button-start1">Корзина</button></a>
+                        <a href="cart.php"><button class="button-start1">Корзина</button></a>
                 </div>
-                <div class="MainT">
-					<h1>ЭКОПЛАНЕТА</h1>
+					<h1>ЭКОПЛАНЕТА<span>Тест</span></h1>
+					<div class="hero-content__p">Тест</div>
+					<button class="button-start">Тест</button>
 				</div>
             </div>
             <div class="layers__item layer-5" style="background-image: url(../for_home/img/lr3.png);"></div>

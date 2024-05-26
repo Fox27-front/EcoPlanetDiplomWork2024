@@ -78,10 +78,6 @@ body {
 	line-height: 1.35em;
 	margin-top: calc(var(--index) * 5.5);
 }
-.MainT{
-	margin-bottom: 50%;
-	color: green;
-}
 .hero-content span {
 	display: block;
 }

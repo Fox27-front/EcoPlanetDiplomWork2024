@@ -32,28 +32,46 @@
                 $result_cat = mysqli_query($db, $query_cat);
                 echo  '<ul class="products">';
                 while ($row_prod = mysqli_fetch_assoc($result_cat)) {
-                    echo '<li class="product">';
-                    echo '<a href="#" class="prod_link img_prod">';            
+                    echo '<li class="product" id="' . $row_prod['id'] . '">';
+                    echo '<div href="#" class="prod_link img_prod" prod_id="' . $row_prod['id'] . '">';            
                     echo '<img src="product_imgs/' . $row_prod['file'] . '" class="">';
-                    echo '</a>';
                     ?>
-                    <div class="add_to_cart_icon"><a href="?add-to-cart" data-quantity="0" class="button add_to_cart_button ajax_add_to_cart" data-product_id="<?php echo $row_prod['id'];  ?>" aria-describedby="" rel="nofollow" title=""></a></div>
+                    <div class="checkbox">
+                        <input class="custom-checkbox" type="checkbox" id="check_id_<?php echo $row_prod['id']; ?>" prod_id="<?php echo $row_prod['id'];  ?>" name="<?php echo $row_prod['id'];  ?>">
+                        <label for="check_id_<?php echo $row_prod['id'];  ?>"></label>
+                    </div>
                     <?php
-                    echo '<a href="#" class="prod_link product_info">'; 
+                    echo '</div>';                    
+                    //echo '<div href="#" class="prod_link product_info" prod_id="' . $row_prod['id'] . '">'; 
+                    echo '<div href="#" class="product_info" prod_id="' . $row_prod['id'] . '">'; 
                     echo '<h3 class="name_prod">' . $row_prod['name'] . '</h3>';
+                    ?>
+                    
+                    <?php
                     echo '<div class="price_loop">' . $row_prod['price'] . ' &#8381;</div>';
-                    echo '</a>';
-                    echo '</li>';
+                    ?>
+                    <div class="quantity">
+                        <button type="button" class="minus">-</button>
+                        <label class="screen-reader-text" for="prod_lab_<?php echo $row_prod['id']; ?>"></label>
+                        <input type="number" id="prod_lab_<?php echo $row_prod['id']; ?>" class="input-text qty text" name="quantity" value="1" aria-label="Количество товара" size="4" min="1" max="" step="1" placeholder="" inputmode="numeric" autocomplete="off">
+                        <button type="button" class="plus">+</button>
+                    </div>
+                        <?php
+                        echo '</div>';
+                        echo '</li>';
+                    }
+                    echo  '</ul>';
                 }
-                echo  '</ul>';
-            }
-            ?>
+                ?>
+            </div>
         </div>
-    </div>
-    <?php
+        <?php
+        echo '<div id="zzz">Ntcn</div>';
+        require ('template/footer.php');
+        ?>
+        <script src="js/jQuery-v3.5.1.js"></script>
+        <script src="js/products.js?<?php echo filemtime('js/products.js') ?>"></script>
+        <script src="js/jquery.cookies.js"></script>
+    </body>
 
-    require ('template/footer.php');
-    ?> 
-</body>
-
-</html>
+    </html>
