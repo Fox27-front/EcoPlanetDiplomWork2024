@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Товары</title>
+	<link rel="stylesheet" href="libs/modal/modal.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<header class="header">
+		<div class="container">
+			<nav class="header__nav nav">
+				<ul class="nav__list">
+					<li class="nav__item"><a href="../index.html" class="nav__link">Главная</a></li>
+					<li class="nav__item"><a href="" class="nav__link">Скидки</a></li>
+					<li class="nav__item"><a href="" class="nav__link">Оплата и доставка</a></li>
+					<li class="nav__item"><a href="" class="nav__link">Контакты</a></li>
+				</ul>
+				<div class="header__cart cart" tabindex="0">
+					<div class="cart__text">
+						Корзина
+						<span class="cart__quantity">0</span>
+					</div>
+					<div class="cart-content">
+						<ul class="cart-content__list" data-simplebar>
+						</ul>
+						<div class="cart-content__bottom">
+							<div class="cart-content__fullprice">
+								<span>Итого:</span>
+								<span class="fullprice">0</span>
+							</div>
+							<button class="cart-content__btn btn" data-graph-path="modal" data-graph-animation="fadeInUp">Перейти в корзину</button>
+						</div>
+					</div>
+				</div>
+			</nav>
+		</div>
+	</header>
+	<main class="content">
+		<div class="container">
+			<div class="products-content grid-container">
+				<div class="filters">
+					<div class="filters__item filters-price">
+						<h3 class="filters-price__title">Цена</h3>
+						<div class="filters-price__slider"></div>
+						<div class="filters-price__inputs">
+							<input type="text" class="filters-price__input">
+							<input type="text" class="filters-price__input">
+						</div>
+					</div>
+				</div>
+				<ul class="products-grid">
+					<li class="products-grid__item">
+						<article class="product">
+							<a href="#" class="product__image">
+								<div class="product__switch image-switch">
+									<div class="image-switch__item">
+										<div class="image-switch__img"><img src="img/Лаурус.PNG" alt="Макбук"></div>
+									</div>
+								</div>
+							</a>
+							<h3 class="product__title">
+								<a href="#">Лаурус обыкновенный</a>
+							</h3>
+							<div class="product__props">
+								<span class="product__rating">
+								</span>
+							</div>
+							<div class="product__info">
+								<span class="product__term">Артикул: 879876</span>
+								<span class="product__available">В наличии: 11 шт</span>
+							</div>
+							<div class="product__price product-price">
+								<span class="product-price__current">1500 ₽</span>
+								<span class="product-price__old"></span>
+							</div>
+							<button class="product__btn btn">Добавить в корзину</button>
+						</article>
+					</li>
+
+					<li class="products-grid__item">
+						<article class="product">
+							<a href="#" class="product__image">
+								<div class="product__switch image-switch">
+									<div class="image-switch__item">
+										<div class="image-switch__img"><img src="img/Лаурус.PNG" alt="Макбук"></div>
+									</div>
+								</div>
+							</a>
+							<h3 class="product__title">
+								<a href="#">Лаурус обыкновенный</a>
+							</h3>
+							<div class="product__props">
+								<span class="product__rating">
+								</span>
+							</div>
+							<div class="product__info">
+								<span class="product__term">Артикул: 879876</span>
+								<span class="product__available">В наличии: 11 шт</span>
+							</div>
+							<div class="product__price product-price">
+								<span class="product-price__current">1500 ₽</span>
+								<span class="product-price__old"></span>
+							</div>
+							<button class="product__btn btn">Добавить в корзину</button>
+						</article>
+					</li>
+
+					<li class="products-grid__item">
+						<article class="product">
+							<a href="#" class="product__image">
+								<div class="product__switch image-switch">
+									<div class="image-switch__item">
+										<div class="image-switch__img"><img src="img/Лаурус.PNG" alt="Макбук"></div>
+									</div>
+								</div>
+							</a>
+							<h3 class="product__title">
+								<a href="#">Лаурус обыкновенный</a>
+							</h3>
+							<div class="product__props">
+								<span class="product__rating">
+								</span>
+							</div>
+							<div class="product__info">
+								<span class="product__term">Артикул: 879876</span>
+								<span class="product__available">В наличии: 11 шт</span>
+							</div>
+							<div class="product__price product-price">
+								<span class="product-price__current">1500 ₽</span>
+								<span class="product-price__old"></span>
+							</div>
+							<button class="product__btn btn">Добавить в корзину</button>
+						</article>
+					</li>
+				</ul>
+			</div>
+			<div class="height"></div>
+		</div>
+	</main>
+	<div class="modal">
+		<div class="modal__container order-modal" role="dialog" aria-modal="true" data-graph-target="modal">
+			<div class="modal-content order-modal__content">
+				<div class="order-modal__top">
+					<h2 class="order-modal__title">Оформление заказа</h2>
+					<span class="order-modal__number">Заказ № 3456 67</span>
+				</div>
+				<div class="order-modal__info">
+					<div class="order-modal__quantity order-modal__info-item">Товаров в заказе: <span>3 шт</span></div>
+					<div class="order-modal__summ order-modal__info-item">Общая сумма заказа: <span>568 789 ₽</span></div>
+					<div class="order-modal__products order-modal__info-item">
+						<button class="order-modal__btn">Состав заказа</button>
+						<ul class="order-modal__list">
+						</ul>
+					</div>
+				</div>
+				<form action="#" class="order-modal__form order">
+					<input type="hidden" name="theme" value="Обратный звонок">
+					<input type="hidden" name="admin_email[]" value="maxgraph23@gmail.com">
+					<input type="hidden" name="form_subject" value="Заявка с сайта Сайт">
+					<label class="order__label">
+						<span class="order__text">Ваше имя</span>
+						<input type="text" name="Имя" class="order__input">
+					</label>
+					<label class="order__label">
+						<span class="order__text">Номер телефона</span>
+						<input type="tel" name="Телефон" class="order__input" placeholder="+7 (___)___-__-__">
+					</label>
+					<label class="order__label">
+						<span class="order__text">Ваше имя</span>
+						<input type="email" name="Email" class="order__input" placeholder="post@gmail.com">
+					</label>
+					<button class="order__btn btn">Оформить заказ</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script src="js/simplebar.js"></script>
+	<script src="libs/modal/modal.js"></script>
+	<script src="js/product.js"></script>
+	<script src="js/fixed-block.js"></script>
+	<script src="js/cart.js"></script>
+</body>
+</html>

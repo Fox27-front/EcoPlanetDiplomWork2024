@@ -16,9 +16,10 @@
     require ('template/log_reg_block.php');
 
     ?>
+    <div class="title_str"><h1>Конструктор букета</h1></div>
+    <div class="line-grad-h"></div>
     <div class="content-line main">
-        <div class="content-area">
-            <h1 style="text-align: center;">Конструктор букета</h1>
+        <div class="content-area">            
             <?php
             require 'inc/config.inc.php';
             $query_cats = "SELECT * FROM `product_cats`";
@@ -44,34 +45,48 @@
                     echo '</div>';                    
                     //echo '<div href="#" class="prod_link product_info" prod_id="' . $row_prod['id'] . '">'; 
                     echo '<div href="#" class="product_info" prod_id="' . $row_prod['id'] . '">'; 
-                    echo '<h3 class="name_prod">' . $row_prod['name'] . '</h3>';
+
+                    $color_id = $row_prod['color_id'];
+                    if (!empty($color_id)) {
+                        $col = "SELECT * FROM  `product_colors` WHERE color_id=$color_id";
+                        $res_color = mysqli_query($db, $col);
+                        $id_col_tab = mysqli_fetch_assoc($res_color);
+                        $name_color = $id_col_tab['color_name'];
+                    } else {
+                        $name_color = '';
+                    }
+                    
+                    /*echo '<div>';
+                    print_r($id_col_tab['color_name']);
+                    echo '</div>';*/
+                    echo '<h3 class="name_prod">' . $row_prod['name'] . ' ' . $name_color . '</h3>';
                     ?>
                     
                     <?php
                     echo '<div class="price_loop">' . $row_prod['price'] . ' &#8381;</div>';
                     ?>
                     <div class="quantity">
-                        <button type="button" class="minus">-</button>
+                        <button type="button" class="minus" prod_id = "<?php echo $row_prod['id']; ?>">-</button>
                         <label class="screen-reader-text" for="prod_lab_<?php echo $row_prod['id']; ?>"></label>
-                        <input type="number" id="prod_lab_<?php echo $row_prod['id']; ?>" class="input-text qty text" name="quantity" value="1" aria-label="Количество товара" size="4" min="1" max="" step="1" placeholder="" inputmode="numeric" autocomplete="off">
-                        <button type="button" class="plus">+</button>
+                        <input type="number" id="prod_lab_<?php echo $row_prod['id']; ?>" prod_id = "<?php echo $row_prod['id']; ?>" class="input-text qty text quantity_prod" name="quantity" value="1" aria-label="Количество товара" size="4" min="1" max="1000" step="1" placeholder="" inputmode="numeric" autocomplete="off">
+                        <button type="button" class="plus" prod_id = "<?php echo $row_prod['id']; ?>">+</button>
                     </div>
-                        <?php
-                        echo '</div>';
-                        echo '</li>';
-                    }
-                    echo  '</ul>';
+                    <?php
+                    echo '</div>';
+                    echo '</li>';
                 }
-                ?>
-            </div>
+                echo  '</ul>';
+            }
+            ?>
         </div>
-        <?php
-        echo '<div id="zzz">Ntcn</div>';
-        require ('template/footer.php');
-        ?>
-        <script src="js/jQuery-v3.5.1.js"></script>
-        <script src="js/products.js?<?php echo filemtime('js/products.js') ?>"></script>
-        <script src="js/jquery.cookies.js"></script>
-    </body>
+    </div>
+    <?php
+        ///echo '<div id="zzz">Ntcn</div>';
+    require ('template/footer.php');
+    ?>
+    <script src="js/jQuery-v3.5.1.js"></script>
+    <script src="js/products.js?<?php echo filemtime('js/products.js') ?>"></script>
+    <script src="js/jquery.cookies.js"></script>
+</body>
 
-    </html>
+</html>
