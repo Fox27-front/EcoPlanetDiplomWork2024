@@ -34,7 +34,7 @@ $(document).ready(function(){
       count_prod++; 
       tek_prod_id = data['tek_prod_id'];
       tek_prod_kolvo = data['kolvo'];
-      console.log('-' + data['tek_prod_id'] + '-');
+      //console.log('-' + data['tek_prod_id'] + '-');
       $('.product#' + tek_prod_id).find('.custom-checkbox').prop('checked', true);
       $('.product#' + tek_prod_id).find('.quantity_prod').val(tek_prod_kolvo);
     })
