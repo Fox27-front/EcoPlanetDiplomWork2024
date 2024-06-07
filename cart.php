@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css?<?php echo filemtime('css/style.css') ?>">
-    <link rel="stylesheet" type="text/css" href="fonts/uicons-bold-straight/css/uicons-bold-straight.css" />    
+    <link rel="stylesheet" type="text/css" href="fonts/uicons-bold-straight/css/uicons-bold-straight.css" />
+    <link rel="shortcut icon" href="images/fav-icon.png" type="image/x-icon">
     <title>Корзина</title>
 </head>
 <body class="text-center">
@@ -48,7 +49,7 @@
                     $query_prod = "SELECT * FROM `products` WHERE id=$id_prod";
                     $result_prod = mysqli_query($db, $query_prod);
                     while($row_prods = $result_prod->fetch_assoc()){
-                        $pod_itg = $kolvo*$row_prods['price']
+                        $pod_itg = $kolvo*$row_prods['price'];
                         ?>
                         <div class="cart_prod">
                             <div class="title_block">
@@ -98,6 +99,9 @@
         }
 
         ?>
+        <div class="reset_block">
+            <div class="reset_button">Очистить корзину</div>
+        </div>
         <div class="itog_block">
             <div>Итог: <span class="price_itog"><?php echo $itg; ?></span> ₽</div>
         </div>

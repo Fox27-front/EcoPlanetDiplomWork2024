@@ -512,6 +512,12 @@ li.product .checkbox {
     width: 100%;
     display: inline-block;
     padding-bottom: 25px;
+    padding-left: 15px;
+    padding-top: 15px;
+    padding-right: 15px;
+    margin-bottom: 20px;
+    border: 2px solid #a7a7a7;
+    position: relative;
 }
 .cart_prod:nth-child(2n+1) {
 
@@ -563,6 +569,38 @@ li.product .checkbox {
     background: rgb(0,0,0);
     background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(255,255,255,1) 100%);
 }
+.close_icon {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: -15px;
+    top: -15px;
+    background: url('/images/close2.png');
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-right: 0!important;
+    transition: 0.5s;
+    transition-timing-function: cubic-bezier(.1, -1.5, .1, 2.5);
+}
+.close_icon:hover {    
+    transform: rotate(180deg);
+}
+.reset_block {
+    margin-top: 40px;
+}
+.reset_button {
+    cursor: pointer;
+    width: 200px;
+    background-color:#FF0;
+    text-align: center;
+    border: 1px solid #a7a7a7;
+    border-radius: 5px;
+    padding: 10px 10px;
+}
+
+
 
 
 /* Группа кнопок в корзине для роз */
