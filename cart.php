@@ -50,21 +50,10 @@
                     $result_prod = mysqli_query($db, $query_prod);
                     while($row_prods = $result_prod->fetch_assoc()){
                         $pod_itg = $kolvo*$row_prods['price'];
-                        ?>
-                        <div class="cart_prod">
-                            <div class="title_block">
-                                <h2><?php echo $row_prods['name']; if ($row_prods['name'] == 'Розы') { $roses++;} ?></h2>
-                            </div>
-                            <div class="img_prod_cart">
-                                <img src="product_imgs/<?php echo $row_prods['file']; ?>">
-                            </div>
-                            <div class="cart_info">
-                                <div class="price">Цена: <?php echo $row_prods['price'] . ' ₽'; $itg = $itg + $pod_itg; ?></div>
-                                <div class="quantity">Количество: <?php echo $kolvo; ?></div>
-                                <div class="quantity">Подитог: <?php echo $kolvo*$row_prods['price']; ?> ₽</div>
-                            </div>
-                        </div>
-
+                        
+                         if ($row_prods['name'] == 'Розы') { $roses++;} 
+                         $itg = $itg + $pod_itg; ?>
+                        
                         <?php
                     }
                 }

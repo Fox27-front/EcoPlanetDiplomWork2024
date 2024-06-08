@@ -9,6 +9,7 @@ if ( !empty($_POST['f']) ) {
 }
 if ($f == 'delall') {
 	setcookie('shop_php', '', time()-1000, '/');
+	setcookie('shop', '', time()-1000, '/');
 } elseif ($f == 'deltek'){
 	
 }
@@ -17,15 +18,6 @@ if ( !empty($_POST['id_prod']) ) {
 } else {  
 }
 
-
-
-if ( !empty($_POST['arr_coocke_front']) ) {
-	$arr_coocke_front = $_POST['arr_coocke_front'];
-	
-} else {
-	$arr_coocke_front = [];
-
-}
 
 function setArrayInCookie($nameCookies, $array){
 	$value = serialize($array);
@@ -46,19 +38,39 @@ require '../inc/config.inc.php';
 $itg = 0;
 $roses = 0;
 $arr = getArrayInCookie('shop_php');
-echo '<br><br><br>';
-print_r(getArrayInCookie('shop_php'));
-/*if ($f == 'deltek'){
+//echo '<br><br><br>';
+//print_r(getArrayInCookie('shop_php'));
+//echo '<br><br><br>';
+$dec_shop = json_decode($_COOKIE['shop']);
+//print_r($dec_shop);
+if ($f == 'deltek') {
+	foreach ($dec_shop as $k => $i) {
+		$str = (array)$i;
+		if ($str['tek_prod_id'] == $id_prod_del) {
+			unset($dec_shop[$k]);
+		}
+	}
+	$enc_shop =	json_encode($dec_shop);
+	setcookie('shop', $enc_shop, time()+3600*24*365, '/');
+	//print_r($dec_shop);
+}
+
+/*foreach ($z as $k => $i) {
+	$str = (array)$i;
+	print_r($str['tek_prod_id']);
+	echo '<br><br><br>';
+}*/
+if ($f == 'deltek'){
 	foreach ($arr as $key => $item) {
 		if ($item['tek_prod_id'] == $id_prod_del) {
 			unset($arr[$key]);
 		}
 	}
 	setArrayInCookie('shop_php', $arr);
-	setArrayInCookie('shop_php', $arr);
+	//setArrayInCookie('shop_php', $arr);
 }
-echo "<br><br><br>";
-print_r($arr);*/
+//echo "<br><br><br>";
+//print_r($arr);
 foreach ($arr as $key => $value) {                        
 	$id_prod = $value['tek_prod_id'];
 	$kolvo = $value['kolvo'];

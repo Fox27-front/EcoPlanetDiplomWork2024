@@ -4,7 +4,7 @@ $(document).ready(function(){
   function upd(f,id_prod) {
     mn_roses = $('input[name="radio_roses"]:checked').attr('attr_mnoj');
     $.ajax({
-      url: 'template/loop_cart_cont.php',
+      url: 'template/loop_cart_cont_2.php',
       method: 'post',
       data: {mn_roses: mn_roses,f: f,id_prod:id_prod,},
       success: function(data){
