@@ -125,3 +125,12 @@ body {
 .layer-4, .layer-5, .layer-6 {
 	pointer-events: none;
 }
+.MainT{
+	margin-bottom: 50%;
+}
+h1{
+	display: inline;
+}
+.eco{
+	color: green;
+}

@@ -24,17 +24,17 @@
             <?php
             require 'inc/config.inc.php';
             $query_cats = "SELECT * FROM `product_cats`";
-            $result_cats = mysqli_query($db, $query_cats);
+            $result_cats = mysqli_query($db, $query_cats); // достаем из базы категории
             $n = 0;
-            while($row_cats = $result_cats->fetch_assoc()){
+            while($row_cats = $result_cats->fetch_assoc()){ //цикл категорий
                 $n++;
                 echo '<h2>' . 'Шаг ' . $n . '. выберите ' . $row_cats['cat_name'] . '</h2>';
                 $cat_id = $row_cats['cat_id'];
-                $query_cat = "SELECT * FROM `products` WHERE cat_id=$cat_id";
+                $query_cat = "SELECT * FROM `products` WHERE cat_id=$cat_id"; // достаем товары из текущей(цикла) категории
                 $result_cat = mysqli_query($db, $query_cat);
                 echo  '<ul class="products">';
                 while ($row_prod = mysqli_fetch_assoc($result_cat)) {
-                    echo '<li class="product" id="' . $row_prod['id'] . '">';
+                    echo '<li class="product" id="' . $row_prod['id'] . '">'; // создаем блоки товаров
                     echo '<div href="#" class="prod_link img_prod" prod_id="' . $row_prod['id'] . '">';            
                     echo '<img src="product_imgs/' . $row_prod['file'] . '" class="">';
                     ?>
@@ -82,7 +82,7 @@
         </div>
     </div>
     <?php
-        ///echo '<div id="zzz">Ntcn</div>';
+        //echo '<div id="zzz">Ntcn</div>';
     require ('template/footer.php');
     ?>
     <script src="js/jQuery-v3.5.1.js"></script>

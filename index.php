@@ -25,9 +25,8 @@
                         <a href="login.php"><button class="button-start1">Личный Кабинет</button></a>
                         <a href="cart.php"><button class="button-start1">Корзина</button></a>
                 </div>
-					<h1>ЭКОПЛАНЕТА<span>Тест</span></h1>
-					<div class="hero-content__p">Тест</div>
-					<button class="button-start">Тест</button>
+                <div class="MainT">
+					<h1 class="eco">ЭКО</h1><h1 class="planet">ПЛАНЕТА</h1></h1>
 				</div>
             </div>
             <div class="layers__item layer-5" style="background-image: url(../for_home/img/lr3.png);"></div>

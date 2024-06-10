@@ -15,45 +15,38 @@
 
     require ('template/log_reg_block.php');
 
-    require 'inc/config.inc.php';
+    require 'inc/config.inc.php';   
 
-    function setArrayInCookie($nameCookies, $array){
-        $value = serialize($array);
-        setcookie($nameCookies, $value, time()+3600*24*365);
-        return true;
-    }
-    function getArrayInCookie($nameCookies){
-        if(isset($_COOKIE[$nameCookies])){
-            $result = unserialize($_COOKIE[$nameCookies]);
-        }else{
-            $result = false;
-        }
-        return $result;
-    }
 
-    if(!isset($_COOKIE["shop_php"])){
-        echo 'Вы не выбрали ни одного товара';   
-    } else {
-    ?><div class="title_str"><h1>Корзина</h1></div>
-    <div class="line-grad-h"></div>
-    <div class="content-line main">
-        <div class="content-area">
-            <div class="cart_prods">
-                <?php 
+?><div class="title_str"><h1>Корзина</h1></div>
+<div class="line-grad-h"></div>
+<div class="content-line main">
+    <div class="content-area">
+        <div class="cart_prods">
+            <?php 
+            /*определяем наличие роз в корзине для блока с радио кнопками и делаем его динамическим, чтобы он отображался только при наличие роз в корзине*/
+            if(!isset($_COOKIE["shop"])){
+                echo 'Вы не выбрали ни одного товара';   
+            } else {
                 $itg = 0;
                 $roses = 0;
-                $arr = getArrayInCookie('shop_php');
-                foreach ($arr as $key => $value) {                  
-                    $id_prod = $value['tek_prod_id'];
-                    $kolvo = $value['kolvo'];
+                if (isset($_COOKIE['shop'])) {
+                    $dec_shop = json_decode($_COOKIE['shop']);
+                } else {
+                    $dec_shop = [];
+                }
+                foreach ($dec_shop as $key => $value) {
+                    $str = (array)$value;
+                    $id_prod = $str['tek_prod_id'];
+                    $kolvo = $str['kolvo'];
                     $query_prod = "SELECT * FROM `products` WHERE id=$id_prod";
                     $result_prod = mysqli_query($db, $query_prod);
                     while($row_prods = $result_prod->fetch_assoc()){
                         $pod_itg = $kolvo*$row_prods['price'];
-                        
-                         if ($row_prods['name'] == 'Розы') { $roses++;} 
-                         $itg = $itg + $pod_itg; ?>
-                        
+
+                        if ($row_prods['name'] == 'Розы') { $roses++;} 
+                        $itg = $itg + $pod_itg; ?>
+
                         <?php
                     }
                 }
@@ -61,28 +54,28 @@
             </div>
             <?php
             if ( $roses>0 ) {
-                   ?>
-                   <div class="roses_block">
-                    <div style="font-size: 25px;">Длина роз</div>
-                    <div class="form_radio_group">
-                        <div class="form_radio_group-item">
-                            <input id="radio-1" type="radio" name="radio_roses" value="1" checked attr_mnoj="1">
-                            <label for="radio-1">40 см</label>
-                        </div>
-                        <div class="form_radio_group-item">
-                            <input id="radio-2" type="radio" name="radio_roses" value="2" attr_mnoj="1.1">
-                            <label for="radio-2">50 см</label>
-                        </div>
-                        <div class="form_radio_group-item">
-                            <input id="radio-3" type="radio" name="radio_roses" value="3" attr_mnoj="1.2">
-                            <label for="radio-3">60 см</label>
-                        </div>
-                        <div class="form_radio_group-item">
-                            <input id="radio-4" type="radio" name="radio_roses" value="4" attr_mnoj="1.3">
-                            <label for="radio-4">70 см</label>
-                        </div>
+               ?>
+               <div class="roses_block">
+                <div style="font-size: 25px;">Длина роз</div>
+                <div class="form_radio_group">
+                    <div class="form_radio_group-item">
+                        <input id="radio-1" type="radio" name="radio_roses" value="1" checked attr_mnoj="1">
+                        <label for="radio-1">40 см</label>
+                    </div>
+                    <div class="form_radio_group-item">
+                        <input id="radio-2" type="radio" name="radio_roses" value="2" attr_mnoj="1.1">
+                        <label for="radio-2">50 см</label>
+                    </div>
+                    <div class="form_radio_group-item">
+                        <input id="radio-3" type="radio" name="radio_roses" value="3" attr_mnoj="1.2">
+                        <label for="radio-3">60 см</label>
+                    </div>
+                    <div class="form_radio_group-item">
+                        <input id="radio-4" type="radio" name="radio_roses" value="4" attr_mnoj="1.3">
+                        <label for="radio-4">70 см</label>
                     </div>
                 </div>
+            </div>
             <?php
         } else {
         }
@@ -93,6 +86,9 @@
         </div>
         <div class="itog_block">
             <div>Итог: <span class="price_itog"><?php echo $itg; ?></span> ₽</div>
+        </div>
+        <div class="checkout_button">
+            <div><a href="checkout.php">Оформить заказ</a></div>
         </div>
     </div> 
 </div> 

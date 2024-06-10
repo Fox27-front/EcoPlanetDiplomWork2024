@@ -27,6 +27,7 @@
 </style>
 <div class="log_reg_block">
 <?php 
+/* блок кнопок вход/рег, подставляем на страницы */
 if(isset($_SESSION['username'])) {
 ?>
 	<a href="#" class="log_link buttons_lk"><?php echo $_SESSION['username']; ?></a><a href="inc/logout.inc.php" class="reg_link buttons_lk">Выйти</a>

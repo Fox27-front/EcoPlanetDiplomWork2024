@@ -1,5 +1,5 @@
 <?php 
-
+/* получаем id продукта, множитель длины роз и передаем данные для чистки карзины или удаления товара в корзине */
 if ( !empty($_POST['mn_roses']) ) {
 	$mn_roses = $_POST['mn_roses'];
 }
@@ -8,7 +8,8 @@ if ( !empty($_POST['f']) ) {
 } else { $f = null; 
 }
 if ($f == 'delall') {
-	setcookie('shop_php', '', time()-1000, '/');
+	//setcookie('shop_php', '', time()-1000, '/');
+	/* чистим куки */
 	setcookie('shop', '', time()-1000, '/');
 } elseif ($f == 'deltek'){
 	
@@ -19,30 +20,18 @@ if ( !empty($_POST['id_prod']) ) {
 }
 
 
-function setArrayInCookie($nameCookies, $array){
-	$value = serialize($array);
-	setcookie($nameCookies, $value, time()+3600*24*365);
-	return true;
-}
-function getArrayInCookie($nameCookies){
-	if(isset($_COOKIE[$nameCookies])){
-		$result = unserialize($_COOKIE[$nameCookies]);
-	}else{
-		$result = false;
-	}
-	return $result;
-}
-print_r($_COOKIE);
+
 
 require '../inc/config.inc.php'; 
 $itg = 0;
 $roses = 0;
-$arr = getArrayInCookie('shop_php');
-//echo '<br><br><br>';
-//print_r(getArrayInCookie('shop_php'));
-//echo '<br><br><br>';
-$dec_shop = json_decode($_COOKIE['shop']);
-//print_r($dec_shop);
+if (isset($_COOKIE['shop'])) {
+	$dec_shop = json_decode($_COOKIE['shop']);
+} else {
+	$dec_shop = [];
+	echo 'Вы не выбрали ни одного товара ';
+}
+//print_r($_COOKIE);
 if ($f == 'deltek') {
 	foreach ($dec_shop as $k => $i) {
 		$str = (array)$i;
@@ -50,30 +39,26 @@ if ($f == 'deltek') {
 			unset($dec_shop[$k]);
 		}
 	}
-	$enc_shop =	json_encode($dec_shop);
+	$dec_shop = array_values($dec_shop);	
+	$enc_shop =	json_encode($dec_shop);	
 	setcookie('shop', $enc_shop, time()+3600*24*365, '/');
 	//print_r($dec_shop);
 }
-
-/*foreach ($z as $k => $i) {
-	$str = (array)$i;
-	print_r($str['tek_prod_id']);
-	echo '<br><br><br>';
-}*/
-if ($f == 'deltek'){
-	foreach ($arr as $key => $item) {
-		if ($item['tek_prod_id'] == $id_prod_del) {
-			unset($arr[$key]);
-		}
-	}
-	setArrayInCookie('shop_php', $arr);
-	//setArrayInCookie('shop_php', $arr);
+if (count($dec_shop) == 0) {
+	echo 'Корзина пуста';
 }
+
 //echo "<br><br><br>";
-//print_r($arr);
-foreach ($arr as $key => $value) {                        
-	$id_prod = $value['tek_prod_id'];
-	$kolvo = $value['kolvo'];
+//print_r($dec_shop);
+//echo "<br><br><br>";
+
+/* разбиваем объект $dec_shop на составляющие и сводим данные и БД с данными из куков */
+foreach ($dec_shop as $key => $value) {
+	$str = (array)$value;
+	$id_prod = $str['tek_prod_id'];
+	$kolvo = $str['kolvo'];
+	
+
 	$query_prod = "SELECT * FROM `products` WHERE id=$id_prod";
 	$result_prod = mysqli_query($db, $query_prod);
 	while($row_prods = $result_prod->fetch_assoc()){
@@ -107,5 +92,25 @@ foreach ($arr as $key => $value) {
 
 		<?php
 	}
+
 }
+/* Проверяем наличие роз в корзине */
+if ( $roses>0 ) {
+	?>
+	<style>
+		.roses_block {
+			display: block;
+		}
+	</style>
+	<?php
+} else {
+	?>
+	<style>
+		.roses_block {
+			display: none;
+		}
+	</style>
+	<?php
+}
+
 ?>
