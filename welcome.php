@@ -19,7 +19,7 @@
     <h1 class="mt-5">Привет <?php if(isset($_SESSION['username'])) { echo $_SESSION['username'];} else {} ?></h1>
     <a href="inc/logout.inc.php"><button class="btn btn-sm btn-primary mt-4">Выйти</button></a>
 
-    <div class="header_cont">Перейти на <a href="/">Главную</a> или <a href="/products.php">Товары</a><?php if(isset($_SESSION['username'])) { if ($_SESSION['userID'] == 1) { echo ' или <a href="/admin.php">Админка</a>'; }}?></div>
+    <div class="header_cont">Перейти на <a href="/">Главную</a>, <a href="/products.php">Товары</a> или <a href="/lk.php">Личный кабинет</a><?php if(isset($_SESSION['username'])) { if ($_SESSION['userID'] == 1) { echo ' или <a href="/admin_products.php">Админ панель(товары)</a>'; }}?></div>
 
     <script src="js/jQuery-v3.5.1.js"></script>
     <script src="js/main.js"></script>

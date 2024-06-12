@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Июн 05 2024 г., 12:13
+-- Время создания: Июн 10 2024 г., 13:49
 -- Версия сервера: 5.6.51
 -- Версия PHP: 8.1.9
 
@@ -114,6 +114,22 @@ INSERT INTO `product_colors` (`color_id`, `color_name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `requests`
+--
+
+CREATE TABLE `requests` (
+  `app_id` int(11) NOT NULL,
+  `user_id` int(20) NOT NULL,
+  `tel` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mail` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `need_foto` int(11) NOT NULL,
+  `additional` text COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `users`
 --
 
@@ -130,7 +146,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `timeStamp`) VALUES
-(3, 'Тестик', 'PROFEBIZNES@yandex.ru', '$2y$10$MGWy9m3dEF4dezmru7otRemMfIU.TF.KeHeVljGcSxu2RZbeqNxHC', '2024-05-14 14:51:30'),
+(1, 'Тестик', 'PROFEBIZNES@yandex.ru', '$2y$10$MGWy9m3dEF4dezmru7otRemMfIU.TF.KeHeVljGcSxu2RZbeqNxHC', '2024-05-14 14:51:30'),
 (4, 'Тест', 'PROFEBIZNES@yandex.ru', '$2y$10$VwO3kTEUpM0HkOC7kvxjquLcBoMI.b7qFDy1SFtJWaC.XwCzjPuTy', '2024-05-14 15:22:21'),
 (5, 'Test', 'PROFEBIZNES@yandex.ru', '$2y$10$wVvreVQodUfyj4pnMUjXM.29zUSjpCKDEFHYaXasmnz0LB1lEQ05u', '2024-05-14 20:20:27'),
 (6, 'Сергей', 'PROFEBIZNES@yandex.ru', '$2y$10$PDRO13Sumo3Kmx2wD2Ft4.vTZFYJ3Af4gxZFI4Rom9h.J4GPayBSS', '2024-05-15 17:07:33'),
@@ -159,6 +175,12 @@ ALTER TABLE `product_colors`
   ADD PRIMARY KEY (`color_id`);
 
 --
+-- Индексы таблицы `requests`
+--
+ALTER TABLE `requests`
+  ADD PRIMARY KEY (`app_id`);
+
+--
 -- Индексы таблицы `users`
 --
 ALTER TABLE `users`
@@ -185,6 +207,12 @@ ALTER TABLE `product_cats`
 --
 ALTER TABLE `product_colors`
   MODIFY `color_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT для таблицы `requests`
+--
+ALTER TABLE `requests`
+  MODIFY `app_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `users`

@@ -23,6 +23,25 @@
     } else {
         $username = '';
     }
+    if(isset($_SESSION['userID'])) {
+        $userID = $_SESSION['userID'];
+    } else {
+        $userID = '';
+    }
+
+    if($userID != '') {
+        $query_users = "SELECT * FROM `users` WHERE id=$userID";
+        $result_users = mysqli_query($db, $query_users);
+        $email = '';
+        while($row_users = $result_users->fetch_assoc()){
+        //print_r($row_users);
+            $email = $row_users['email'];
+        }
+    } else {
+        $email = '';
+    }
+
+    //print_r($result_users);
     ?>
     <div class="title_str"><h1>Оформление заказа</h1></div>
     <div class="line-grad-h"></div>
@@ -32,19 +51,33 @@
                 <label class="text-field__label" for="login">Логин</label>
                 <input class="text-field__input" type="text" name="login" id="login" placeholder="Логин" value="<?php echo $username; ?>">
             </div>
+            <?php
+            if($userID == '') {
+            ?>
+            <div class="login_block data_user">
+                <label class="text-field__label" for="password">Пароль</label>
+                <input class="text-field__input" type="password" name="password" id="password" placeholder="Пароль" value="">
+            </div>
+            <?php
+            }
+            ?>
             <div class="phone_block data_user">
               <label class="text-field__label" for="phone">Телефон</label>
               <input class="text-field__input" type="text" name="phone" id="phone" placeholder="Телефон" value="">
           </div>
-            <div class="email_block data_user">
+          <div class="email_block data_user">
               <label class="text-field__label" for="email">Email</label>
-              <input class="text-field__input" type="text" name="email" id="email" placeholder="Email" value="">
+              <input class="text-field__input" type="text" name="email" id="email" placeholder="Email" value="<?php echo $email; ?>">
           </div>
           <div class="address_block data_user">
               <label class="text-field__label" for="address">Адрес доставки</label>
               <input class="text-field__input" type="text" name="address" id="address" placeholder="Адрес доставки">
           </div>
-          <div class="address_block data_user">
+          <div class="photo_block data_user">
+              <label class="text-field__label" for="photo">Отправить вам фото пред доставкой</label>
+              <input class="text-field__input" type="checkbox" name="photo" id="photo" placeholder="Отправить вам фото пред доставкой" value="">
+          </div>
+          <div class="dop_block data_user">
               <label class="text-field__label" for="poj">Доп. инф.</label>
               <textarea class="textarea-field__input" name="poj" id="poj" placeholder="Дополнительная информация" rows="5" cols="50"></textarea>
           </div>

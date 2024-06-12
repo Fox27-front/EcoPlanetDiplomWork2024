@@ -30,11 +30,11 @@
 /* блок кнопок вход/рег, подставляем на страницы */
 if(isset($_SESSION['username'])) {
 ?>
-	<a href="#" class="log_link buttons_lk"><?php echo $_SESSION['username']; ?></a><a href="inc/logout.inc.php" class="reg_link buttons_lk">Выйти</a>
+	<a href="/lk.php" class="log_link buttons_lk"><?php echo $_SESSION['username']; ?></a><a href="inc/logout.inc.php" class="reg_link buttons_lk">Выйти</a>
 <?php 
 } else {
 ?>
-	<a href="login.php" class="log_link buttons_lk">Вход</a><a href="register.php" class="reg_link buttons_lk">Регистрация</a>
+	<a href="/login.php" class="log_link buttons_lk">Вход</a><a href="/register.php" class="reg_link buttons_lk">Регистрация</a>
 <?php
 }
 ?>
