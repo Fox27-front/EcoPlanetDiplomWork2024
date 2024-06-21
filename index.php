@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +8,7 @@
     <link rel="shortcut icon" href="images/fav-icon.png" type="image/x-icon">
     <title>ecoplanet.ru</title>
     <link rel="stylesheet" href="../for_home/css/main.css">
-	<script src="../for_home/js/app.js" defer></script>
+    <script src="../for_home/js/app.js" defer></script>
 </head>
 <body>
     <?php
@@ -19,19 +20,29 @@
             <div class="layers__item layer-2" style="background-image: url(../for_home/img/lr2.png);"></div>
             <div class="layers__item layer-3">
                 <div class="hero-content">
-                <div class="main">
+                    <div class="main">
                         <a href=""><button class="button-start1">Главная</button></a>
                         <a href="/products.php"><button class="button-start1">Товары</button></a>
-                        <a href="login.php"><button class="button-start1">Личный Кабинет</button></a>
+                        <?php
+                        if(isset($_SESSION['username'])) {
+                            ?>
+                            <a href="/lk.php"><button class="button-start1">Личный Кабинет</button></a>
+                            <?php 
+                        } else {
+                            ?>
+                            <a href="login.php"><button class="button-start1">Личный Кабинет</button></a>
+                            <?php
+                        }
+                        ?>
                         <a href="cart.php"><button class="button-start1">Корзина</button></a>
-                </div>
-                <div class="MainT">
-					<h1 class="eco">ЭКО</h1><h1 class="planet">ПЛАНЕТА</h1></h1>
-				</div>
-            </div>
-            <div class="layers__item layer-5" style="background-image: url(../for_home/img/lr3.png);"></div>
-			<div class="layers__item layer-6" style="background-image: url(../for_home/img/lr4.png);"></div>
-        </div>
-    </section>
-</body>
-</html> 
+                    </div>
+                    <div class="MainT">
+                       <h1 class="eco">ЭКО</h1><h1 class="planet">ПЛАНЕТА</h1></h1>
+                   </div>
+               </div>
+               <div class="layers__item layer-5" style="background-image: url(../for_home/img/lr3.png);"></div>
+               <div class="layers__item layer-6" style="background-image: url(../for_home/img/lr4.png);"></div>
+           </div>
+       </section>
+   </body>
+   </html> 

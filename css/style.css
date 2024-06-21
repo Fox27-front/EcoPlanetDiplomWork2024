@@ -615,18 +615,23 @@ li.product .checkbox {
 .checkout_button {
     display: inline-block;;
 }
-.checkout_button a {
+.checkout_button .button {
     padding: 15px 30px;
     display: inline-block;
     background-color: #fb0000;
     border-radius: 5px;
     border: 1px solid #000;
     color: #fff;
+    font-family: 'Colus';
+    font-size: 25px;
+    cursor: pointer;
 }
-.checkout_button a:hover {
+.checkout_button .button:hover {
     background-color: #00f94d;
 }
-
+#mess_insert {
+    color: #f00;
+}
 
 
 /* Группа кнопок в корзине для роз */

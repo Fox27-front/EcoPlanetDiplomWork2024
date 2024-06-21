@@ -88,7 +88,7 @@
             <div>Итог: <span class="price_itog"><?php echo $itg; ?></span> ₽</div>
         </div>
         <div class="checkout_button">
-            <div><a href="checkout.php">Оформить заказ</a></div>
+            <div><a href="checkout.php" class="button">Оформить заказ</a></div>
         </div>
     </div> 
 </div> 

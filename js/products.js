@@ -55,15 +55,14 @@ $(document).ready(function(){
     function z() {
       var quantity_prod = $('.quantity_prod#prod_lab_' + tek_prod_id).val();
     }
-    //setTimeout(z, 2000);   
-
+   
     if ( $.cookie('shop') == null ) {
       var cookie_shop = [];
     } else {
       var cookie_shop = JSON.parse($.cookie('shop'));
 
     }
-    /* обработка клика по блоку prod_link товара */
+    
     if ($(this).find(".custom-checkbox").is(':checked')){
       $(this).find(".custom-checkbox").prop('checked', false);
       var cookie_shop = jQuery.grep(cookie_shop, function( n, i ) {
@@ -76,7 +75,7 @@ $(document).ready(function(){
       var cookie_shop = jQuery.grep(cookie_shop, function( n, i ) {
         return ( n.tek_prod_id !== tek_prod_id );
       })
-      /* сохраняем состояние объектов товаров */
+      
       cookie_shop.push( {tek_prod_id : tek_prod_id, kolvo : quantity_prod},);
       $(this).addClass('checked');
     }

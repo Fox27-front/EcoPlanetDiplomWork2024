@@ -9,7 +9,6 @@ $(document).ready(function(){
       method: 'post',
       data: {mn_roses: mn_roses,f: f,id_prod:id_prod,},
       success: function(data){
-        //console.log(mn_roses);
         /* заменяем содержимое cart_prods на loop_cart_cont.php */
         $('.cart_prods').html(data);
       },
@@ -19,9 +18,9 @@ $(document).ready(function(){
         $('.poditog').each(function(){
           sum += parseInt($(this).html(), 10);
         });
-        //alert(sum);
         $('.price_itog').html(sum);
         $.cookie('payment', sum, { expires: 365, path: '/' });
+        $.cookie('roses', mn_roses, { expires: 365, path: '/' });
         del_prod();
         var f= null;
       },

@@ -28,7 +28,7 @@
             $n = 0;
             while($row_cats = $result_cats->fetch_assoc()){ //цикл категорий
                 $n++;
-                echo '<h2>' . 'Шаг ' . $n . '. выберите ' . $row_cats['cat_name'] . '</h2>';
+                echo '<h2>' . $row_cats['cat_name'] . '</h2>';
                 $cat_id = $row_cats['cat_id'];
                 $query_cat = "SELECT * FROM `products` WHERE cat_id=$cat_id"; // достаем товары из текущей(цикла) категории
                 $result_cat = mysqli_query($db, $query_cat);
